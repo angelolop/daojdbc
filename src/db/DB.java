@@ -33,7 +33,7 @@ public class DB {
    }
 
    private static Properties loadProperties() {
-      try (FileInputStream fs = new FileInputStream("C:\\Users\\angelo\\Desktop\\Java\\Course\\mysql\\work6\\db.properties")) {
+      try (FileInputStream fs = new FileInputStream("work/db.properties")) {
          Properties props = new Properties();
          props.load(fs);
          return props;
