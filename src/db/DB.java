@@ -12,11 +12,10 @@ public class DB {
    public static Connection getConnection() {
       if (conn == null) {
          try {
-            Class.forName("com.mysql.jdbc.Driver");
             Properties props = loadProperties();
             String url = props.getProperty("dburl");
             conn = DriverManager.getConnection(url, props);
-         } catch (SQLException | ClassNotFoundException e) {
+         } catch (SQLException e) {
             throw new DbException(e.getMessage());
          }
       }
@@ -34,7 +33,7 @@ public class DB {
    }
 
    private static Properties loadProperties() {
-      try (FileInputStream fs = new FileInputStream("work/db.properties")) {
+      try (FileInputStream fs = new FileInputStream("C:\\Users\\angelo\\Desktop\\Java\\Course\\daojdbc\\work\\db.properties")) {
          Properties props = new Properties();
          props.load(fs);
          return props;

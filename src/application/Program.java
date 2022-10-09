@@ -5,10 +5,12 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.util.Date;
 import java.util.List;
 
 public class Program {
-   public static void main(String[] args) {
+   public static void main(String[] args) throws ClassNotFoundException {
+      Class.forName("com.mysql.jdbc.Driver");
 
       SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -23,10 +25,15 @@ public class Program {
 
       list.forEach(System.out::println);
 
-      System.out.println("\n=== TEST 2: seller findByDepartment ===");
+      System.out.println("\n=== TEST 3: seller findAll ===");
       List<Seller> listall = sellerDao.findAll();
 
       listall.forEach(System.out::println);
+
+      System.out.println("\n=== TEST 4: seller insert ===");
+      Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", new Date(), 4000.0, department);
+      sellerDao.insert(newSeller);
+      System.out.println("Inserted! New id = " + newSeller.getId());
 
    }
 }
